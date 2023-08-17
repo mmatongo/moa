@@ -108,3 +108,6 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 ## License
 
 This project is licensed under the MIT License.
+
+## Acknowledgements
+Got the idea from [kognise's](github.com/kognise) [s1](https://github.com/kognise/s1).
