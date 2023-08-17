@@ -5,3 +5,5 @@ ruby '~> 3.2.2'
 gem "sinatra", "~> 3.1"
 gem "pstore", "~> 0.1.2"
 gem "thin", "~> 1.8"
+
+gem "sinatra-cross_origin", "~> 0.4.0"

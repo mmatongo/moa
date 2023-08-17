@@ -3,6 +3,7 @@ require 'json'
 require 'thread'
 require 'securerandom'
 require 'pstore'
+require 'sinatra/cross_origin'
 
 set :server, 'thin'
 
@@ -10,6 +11,22 @@ Dir.mkdir('databases') unless File.exist?('databases')
 $store_db = PStore.new('databases/store.db')
 $users_db = PStore.new('databases/users.db')
 $mutex = Mutex.new
+
+configure do
+  enable :cross_origin
+end
+
+before do
+  response.headers['Access-Control-Allow-Origin'] = '*'
+  response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
+  response.headers['Access-Control-Allow-Headers'] = 'Authorization, Content-Type, Accept, Origin, User-Agent'
+end
+
+options '*' do
+  response.headers['Allow'] = 'HEAD,GET,PUT,DELETE,OPTIONS'
+  response.headers['Access-Control-Allow-Headers'] = 'Authorization, Content-Type, Accept, Origin, User-Agent'
+  200
+end
 
 helpers do
   def parsed_body
